@@ -1,8 +1,8 @@
 class Link < Formula
   desc "Local Markdown memory for AI agents"
   homepage "https://github.com/gowtham0992/link"
-  url "https://github.com/gowtham0992/link/archive/refs/tags/v1.3.0.tar.gz"
-  sha256 "9df6ad808fd3be29e0ed6c2699c9f02254ff0bc5f85fcec81fded6553d830910"
+  url "https://github.com/gowtham0992/link/archive/refs/tags/v1.4.0.tar.gz"
+  sha256 "7f59c6cf0675c67e2b2f028e0bf049c356486c8ab9ebba0467ea3d502e4a5404"
   license "MIT"
   head "https://github.com/gowtham0992/link.git", branch: "main"
 
@@ -20,7 +20,7 @@ class Link < Formula
     (libexec/"mcp_package").mkpath
     (libexec/"mcp_package").install "mcp_package/link_core"
 
-    (bin/"link").write <<~SH
+    (bin/"lnk").write <<~SH
       #!/bin/sh
       exec "#{python3}" "#{libexec}/link.py" "$@"
     SH
@@ -29,15 +29,15 @@ class Link < Formula
   def caveats
     <<~EOS
       Try Link:
-        link demo
-        link serve link-demo
+        lnk demo
+        lnk serve link-demo
 
       Then open:
         http://127.0.0.1:3000
         http://127.0.0.1:3000/graph
 
       To create a personal wiki:
-        link init ~/link
+        lnk init ~/link
 
       For MCP clients, install link-mcp with the agent installer or a venv:
         python3 -m venv ~/.link-mcp-venv
@@ -46,9 +46,9 @@ class Link < Formula
   end
 
   test do
-    system bin/"link", "--version"
-    system bin/"link", "demo", testpath/"link-demo", "--force"
-    system bin/"link", "validate", testpath/"link-demo"
-    system bin/"link", "status", "--validate", testpath/"link-demo"
+    system bin/"lnk", "--version"
+    system bin/"lnk", "demo", testpath/"link-demo", "--force"
+    system bin/"lnk", "validate", testpath/"link-demo"
+    system bin/"lnk", "status", "--validate", testpath/"link-demo"
   end
 end
