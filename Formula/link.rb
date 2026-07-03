@@ -9,7 +9,7 @@ class Link < Formula
   depends_on "python@3.14"
 
   def python3
-    Formula["python@3.14"].opt_bin/"python3.14"
+    formula_opt_bin("python@3.14")/"python3.14"
   end
 
   def install
