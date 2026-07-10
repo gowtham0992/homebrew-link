@@ -4,6 +4,7 @@ class Link < Formula
   url "https://github.com/gowtham0992/link/archive/refs/tags/v1.6.0.tar.gz"
   sha256 "79a732c0707ae8d243f6c2c05835fde7175385810b783cb13103d7a046682d1e"
   license "MIT"
+  revision 1
   head "https://github.com/gowtham0992/link.git", branch: "main"
 
   depends_on "python@3.14"
@@ -20,8 +21,16 @@ class Link < Formula
     (libexec/"mcp_package").mkpath
     (libexec/"mcp_package").install "mcp_package/link_core"
 
+    # Prefer Link's managed venv when it hosts the link-mcp package: the
+    # Homebrew python is externally managed (PEP 668), so the optional
+    # semantic/rerank tiers can only live in that venv. Same code runs
+    # either way — link.py always uses its own bundled link_core first.
     (bin/"lnk").write <<~SH
       #!/bin/sh
+      LINK_VENV_PY="$HOME/.link-mcp-venv/bin/python"
+      if [ -x "$LINK_VENV_PY" ] && "$LINK_VENV_PY" -c "import link_core" >/dev/null 2>&1; then
+        exec "$LINK_VENV_PY" "#{libexec}/link.py" "$@"
+      fi
       exec "#{python3}" "#{libexec}/link.py" "$@"
     SH
   end
@@ -29,17 +38,19 @@ class Link < Formula
   def caveats
     <<~EOS
       Try Link:
-        lnk demo
-        lnk serve link-demo
+        lnk try
+        lnk proof
 
       Then open:
         http://127.0.0.1:3000
         http://127.0.0.1:3000/graph
 
-      To create a personal wiki:
-        lnk init ~/link
+      To create a personal wiki and wire up an agent:
+        lnk onboard
+        lnk onboard --agent claude-code --hooks --write
 
-      For MCP clients, install link-mcp with the agent installer or a venv:
+      For MCP clients, install link-mcp with the agent installer or a venv
+      (lnk automatically uses ~/.link-mcp-venv when it exists):
         python3 -m venv ~/.link-mcp-venv
         ~/.link-mcp-venv/bin/python -m pip install --upgrade pip link-mcp
     EOS
