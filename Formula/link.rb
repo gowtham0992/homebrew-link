@@ -1,8 +1,8 @@
 class Link < Formula
   desc "Local Markdown memory for AI agents"
   homepage "https://github.com/gowtham0992/link"
-  url "https://github.com/gowtham0992/link/archive/refs/tags/v1.5.0.tar.gz"
-  sha256 "c8cc625f107157b3782c583cea45347175998a1d87a5853599a3aa35d0c046e0"
+  url "https://github.com/gowtham0992/link/archive/refs/tags/v1.6.0.tar.gz"
+  sha256 "79a732c0707ae8d243f6c2c05835fde7175385810b783cb13103d7a046682d1e"
   license "MIT"
   head "https://github.com/gowtham0992/link.git", branch: "main"
 
