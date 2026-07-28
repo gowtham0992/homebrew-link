@@ -1,8 +1,8 @@
 class Link < Formula
   desc "Local Markdown memory for AI agents"
   homepage "https://github.com/gowtham0992/link"
-  url "https://github.com/gowtham0992/link/archive/refs/tags/v1.7.0.tar.gz"
-  sha256 "1322c6d4e82b7711924852a5ca853384e4210612374475a77f4c2bae9933b1a2"
+  url "https://github.com/gowtham0992/link/archive/refs/tags/v2.0.0.tar.gz"
+  sha256 "2d5cb82150e141fe21eff86c8b085f4d20f289afc992ef5149f4d5adec063b3c"
   license "MIT"
   head "https://github.com/gowtham0992/link.git", branch: "main"
 
@@ -37,21 +37,19 @@ class Link < Formula
   def caveats
     <<~EOS
       Try Link:
-        lnk try
-        lnk proof
+        lnk proof                 # prove cross-agent memory in ~1 second
+        lnk try                   # the full demo wiki, then: lnk serve link-demo
 
-      Then open:
-        http://127.0.0.1:3000
-        http://127.0.0.1:3000/graph
-
-      To create a personal wiki and wire up an agent:
-        lnk onboard
+      Wire your agent (creates ~/link, provisions MCP, writes session hooks):
         lnk onboard --agent claude-code --hooks --write
 
-      For MCP clients, install link-mcp with the agent installer or a venv
-      (lnk automatically uses ~/.link-mcp-venv when it exists):
-        python3 -m venv ~/.link-mcp-venv
-        ~/.link-mcp-venv/bin/python -m pip install --upgrade pip link-mcp
+      Optional, macOS: put the review gate in your menu bar — notifications
+      when memory is captured, a global palette (Opt-Cmd-M), and a live view
+      of every Link surface:
+        brew install --cask gowtham0992/link/linkbar
+
+      Optional: meaning-based recall (one-time local model download):
+        lnk semantic ~/link --setup
     EOS
   end
 
