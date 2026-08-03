@@ -1,8 +1,8 @@
 class Link < Formula
   desc "Local Markdown memory for AI agents"
   homepage "https://github.com/gowtham0992/link"
-  url "https://github.com/gowtham0992/link/archive/refs/tags/v2.0.0.tar.gz"
-  sha256 "2d5cb82150e141fe21eff86c8b085f4d20f289afc992ef5149f4d5adec063b3c"
+  url "https://github.com/gowtham0992/link/archive/refs/tags/v2.1.0.tar.gz"
+  sha256 "365128049124787f0a6821cfadc26edab916976bee5f0fdd54e95790277ac68d"
   license "MIT"
   head "https://github.com/gowtham0992/link.git", branch: "main"
 
@@ -40,8 +40,9 @@ class Link < Formula
         lnk proof                 # prove cross-agent memory in ~1 second
         lnk try                   # the full demo wiki, then: lnk serve link-demo
 
-      Wire your agent (creates ~/link, provisions MCP, writes session hooks):
-        lnk onboard --agent claude-code --hooks --write
+      Make it yours — one command wires every agent you have
+      (workspace, MCP, session hooks; re-run after any upgrade):
+        lnk setup
 
       Optional, macOS: put the review gate in your menu bar — notifications
       when memory is captured, a global palette (Opt-Cmd-M), and a live view
