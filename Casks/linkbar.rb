@@ -1,8 +1,8 @@
 cask "linkbar" do
-  version "1.2.1"
-  sha256 "04d1b4c7d09b78ccafb76933ccdf93f9c4a6a6f3461541c8542d202ed5e87a96"
+  version "1.3.0"
+  sha256 "458d1d0ae7f23b67dc8529c99776ac44b6cb256773337c56a23758925639d12c"
 
-  url "https://github.com/gowtham0992/link/releases/download/v2.2.1/LinkBar-#{version}.zip"
+  url "https://github.com/gowtham0992/link/releases/download/v2.3.0/LinkBar-#{version}.zip"
   name "LinkBar"
   desc "Link's agent memory, ambient in the menu bar"
   homepage "https://github.com/gowtham0992/link"
